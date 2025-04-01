@@ -160,7 +160,7 @@ We thank the reviewer for this detailed and multifaceted feedback. We address th
    Thank you for pointing this out. In our revision, we will include both theoretical complexity analysis of our method (See Figure Re.5).
 
 5. **Terminology: Homophilic vs. Heterophilic (not Homogeneous/Heterogeneous)**  
-   We appreciate the correction. While the term "homogeneous graph" is used to refer to graphs without typed nodes or edges, we agree that **"homophilic" and "heterophilic"** more accurately reflect the **semantic relationship between node features and connections**. We will revise the terminology throughout the paper to reflect this distinction.
+   We appreciate the correction. While the term "homogeneous/heterogeneous graph" is used to refer to graphs without typed nodes or edges, we agree that **"homophilic" and "heterophilic"** more accurately reflect the **semantic relationship between node features and connections**. We will revise the terminology throughout the paper to reflect this distinction.
 
 <div align="center"><strong>Figure Re.5: Additional analysis on complexity
 
