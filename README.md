@@ -1,18 +1,22 @@
-#### Q1: The paper does not live up to its claims. Despite modest claims of addressing oversmoothing (which can be addressed by many approaches nowadays), the authors do not show results with different number of layers (very deep models).
+# Q1: 
 
-#### A1: 
+The paper does not live up to its claims. Despite modest claims of addressing oversmoothing (which can be addressed by many approaches nowadays), the authors do not show results with different number of layers (very deep models).
+
+# A1: 
 
 Thank you for your valuable feedback.
 
-We would like to clarify a potential misunderstanding. Our method does not address oversmoothing by increasing the number of GNN layers. Instead, **CGDConv mitigates oversmoothing from the perspective of diffusion control**, by adaptively limiting the number of message-passing steps through a theoretically grounded convergence criterion \(K_0\) and constraint factor \( \beta = 2K_0 \) (Section 3.1, Eq. 7–9). This design avoids excessive feature propagation and homogenization — the essence of oversmoothing — without requiring deep model architectures.
+We would like to clarify a potential misunderstanding. Our method does not address oversmoothing by increasing the number of GNN layers. Instead, **CGDConv mitigates oversmoothing from the perspective of diffusion control**, by adaptively limiting the number of message-passing steps through a theoretically grounded convergence criterion $K_0$ and constraint factor $\beta = 2K_0$ (Section 3.1, Eq. 7–9). This design avoids excessive feature propagation and homogenization — the essence of oversmoothing — without requiring deep model architectures.
 
-As you suggested, we have conducted relevant experiments under **different diffusion depths**, which play an analogous role to model depth in traditional GNNs. These results are reported in **Table 4**, where we vary \(\beta\) and show the corresponding performance across multiple datasets and backbones. We believe these results address your concern by directly evaluating the impact of propagation depth and demonstrating the robustness of our diffusion strategy.
+As you suggested, we have conducted relevant experiments under **different diffusion depths**, which play an analogous role to model depth in traditional GNNs. These results are reported in **Table 4**, where we vary $\beta$ and show the corresponding performance across multiple datasets and backbones. We believe these results address your concern by directly evaluating the impact of propagation depth and demonstrating the robustness of our diffusion strategy.
 
 **CGDConv is designed as a plug-in diffusion strategy that is orthogonal to GNN layer depth** — it can complement deep models, but does not depend on depth to function effectively. Indeed, even with a standard 2-layer GCN backbone, CGDConv outperforms deeper or more complex diffusion-based baselines such as GDC and ADC (see Table 2 and ablation studies in Table 5), which further demonstrates the method's effectiveness.
 
 
 
-#### Q2: The evaluation that was done in the paper is ok, but it is not sufficient. This is because the datasets chosen here are known to suffer from different issues, as shown in [1,2]. Thus, the authors should show the performance of their method also on other datasets like OGB [3] and new heterophilic datasets [2]. It will also be more convincing if the authors show results on additional tasks, not only node classification. Additionally, the authors do not compare their method with recent state of the art methods, which conveys a misleading portrait of the current state of the art. I kindly ask the authors to revise their tables to reflect up-to-date architectures.
+# Q2: 
+
+The evaluation that was done in the paper is ok, but it is not sufficient. This is because the datasets chosen here are known to suffer from different issues, as shown in [1,2]. Thus, the authors should show the performance of their method also on other datasets like OGB [3] and new heterophilic datasets [2]. It will also be more convincing if the authors show results on additional tasks, not only node classification. Additionally, the authors do not compare their method with recent state of the art methods, which conveys a misleading portrait of the current state of the art. I kindly ask the authors to revise their tables to reflect up-to-date architectures.
 
 ```
 [1] Pitfalls of Graph Neural Network Evaluation
@@ -20,11 +24,11 @@ As you suggested, we have conducted relevant experiments under **different diffu
 [3] Open Graph Benchmark: Datasets for Machine Learning on Graphs
 ```
 
-#### A2:
+# A2:
 
 Thank you for your valuable suggestions regarding evaluation breadth and dataset diversity.
 
-We fully agree that evaluating on larger and more challenging datasets like OGB is important. In response, we attempted to run CGDConv on **OGB-arxiv**, and encountered a **critical scalability bottleneck** due to the size of the diffusion matrix. Specifically, computing the PPR-based diffusion matrix involves inverting a \(169{,}343 \times 169{,}343\) adjacency matrix, which requires approximately **118GB of memory**. This leads to a **silent failure** on standard hardware: the process terminates without error output, as shown in the attached runtime log (see **Figure Re.1**).
+We fully agree that evaluating on larger and more challenging datasets like OGB is important. In response, we attempted to run CGDConv on **OGB-arxiv**, and encountered a **critical scalability bottleneck** due to the size of the diffusion matrix. Specifically, computing the PPR-based diffusion matrix involves inverting a $169{,}343 \times 169{,}343$ adjacency matrix, which requires approximately **118GB of memory**. This leads to a **silent failure** on standard hardware: the process terminates without error output, as shown in the attached runtime log (see **Figure Re.1**).
 
 
 This issue is not specific to our method — it arises from the matrix inversion operation commonly used in diffusion-based models like GDC and ADC, which are also not scalable to such graph sizes without approximation. We acknowledge that handling large-scale graphs remains a crucial open challenge and plan to investigate efficient and scalable solutions (e.g., sparsified diffusion, Monte Carlo estimation) in future work.
@@ -35,13 +39,15 @@ We also appreciate the suggestion to explore **additional tasks beyond node clas
 
 Lastly, we would like to clarify that this work was conducted in 2024, and we have already included baselines up to 2023, such as GloGNN and SNGNN. As of our submission, few relevant diffusion-based methods had been published in 2024. We sincerely appreciate the suggestion and are willing to incorporate additional recent 2024 baselines in the final version to further strengthen our comparisons.
 
-![image](https://github.com/user-attachments/assets/dc034a0d-b8c9-48e7-96f1-28435491597a)
+<div align="center"><strong>Figure Re.1: Silent crash when running the OGB dataset. When the Python process exceeds the memory limit, the operating system will directly terminate the process without throwing a Python exception. The "adj matrix over" you see is the last successfully executed step, after which the process is killed by the system.
 
-Figure Re.1: Silent crash when running the OGB dataset. When the Python process exceeds the memory limit, the operating system will directly terminate the process without throwing a Python exception. The "adj matrix over" you see is the last successfully executed step, after which the process is killed by the system.
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/dc034a0d-b8c9-48e7-96f1-28435491597a" /></strong></div>
 
-#### Q3: The paper is very much related to previous works, however it lacks citations and comparison with methods that are very much relevant. I provide examples below.
+# Q3: 
 
-#### A3:
+The paper is very much related to previous works, however it lacks citations and comparison with methods that are very much relevant. I provide examples below.
+
+# A3:
 
 We thank the reviewer for raising this important point.
 
@@ -55,9 +61,11 @@ We understand that this link may not be sufficiently explicit for readers unfami
 
 We will also reinforce citations in later sections and ensure that the unique contributions of our model are clearly distinguished from the established foundations.
 
-#### Q4: The experiments provided are OK, but not sufficient to actually show why the proposed method is better, as previously discussed.
+# Q4: 
 
-#### A4:
+The experiments provided are OK, but not sufficient to actually show why the proposed method is better, as previously discussed.
+
+# A4:
 
 Thank you again for your feedback.
 
@@ -66,7 +74,7 @@ We understand your concern that the current experimental setup may not fully sho
 - **Nine diverse benchmark datasets**, covering both **homogeneous** and **heterogeneous** graphs (including low-degree and heterophilic structures);
 - **Comprehensive comparisons** with **nine baseline models**, including strong diffusion-based and heterophily-aware GNNs (e.g., GDC, ADC, SNGNN, GloGNN);
 - A detailed **ablation study** (Table 5) that isolates the contributions of our two core components — constrained diffusion (CD) and feature information flow routing (FIFR);
-- A **parameter sensitivity analysis** for both the constraint factor \(\beta\) and balance factor \(\alpha\) (Section 5.3), showing how CGDConv adapts to graph structure;
+- A **parameter sensitivity analysis** for both the constraint factor $\beta$ and balance factor $\alpha$ (Section 5.3), showing how CGDConv adapts to graph structure;
 - A focused **evaluation on low-degree nodes** (Appendix Table A.2), demonstrating how CGDConv improves classification for weakly connected or noisy nodes — a known challenge in graph learning.
 
 These results consistently show that CGDConv achieves superior or competitive performance in a variety of settings. Importantly, our method is **model-agnostic and plug-and-play**, making it broadly applicable as a graph augmentation technique.
@@ -75,7 +83,9 @@ We believe that the **combination of effectiveness, interpretability, and genera
 
 
 
-#### Q5: The paper is very much related to previous works, however it lacks citations and comparison with methods that are very much relevant. I provide examples below.Essential References Not Discussed: The authors should cite, discuss, and compare where possible with the following works, which are directly related to this work: 
+# Q5: 
+
+The paper is very much related to previous works, however it lacks citations and comparison with methods that are very much relevant. I provide examples below.Essential References Not Discussed: The authors should cite, discuss, and compare where possible with the following works, which are directly related to this work: 
 
 ```
 [4] Feature Transportation Improves Graph Neural Networks (AAAI 2024). Here it was proposed to learn the diffusion process and allow directed information flow with advection, and it belongs to the graph neuro ODE family of architectures.
@@ -93,7 +103,7 @@ Missing references on the background of diffusion (differential equation) based 
 [9] PDE-GCN: Novel Architectures for Graph Neural Networks Motivated by Partial Differential Equations
 ```
 
-#### A5:
+# A5:
 
 We thank the reviewer for pointing out these additional related works and agree that some of them are highly relevant to our problem setting. We address them below:
 
@@ -105,19 +115,21 @@ We thank the reviewer for pointing out these additional related works and agree 
 
 We appreciate the reviewer’s comprehensive feedback and will ensure that all these works are acknowledged and appropriately positioned in the revised version. Our goal is not to replace but rather to **complement** existing approaches with a **general-purpose, architecture-agnostic diffusion enhancement**.
 
-![image](https://github.com/user-attachments/assets/5f9dfb21-2663-40b6-b501-e271e8b7218d)
+<div align="center"><strong>Figure Re.2: Screenshot from the official GitHub link provided in the [8] GRAND. This showing a *404 error*, indicating that the codebase is not publicly accessible at the time of our submission. This makes direct, reproducible comparison with GRAND infeasible.
 
-Figure Re.2: Screenshot from the official GitHub link provided in the [8] GRAND. This showing a **404 error**, indicating that the codebase is not publicly accessible at the time of our submission. This makes direct, reproducible comparison with GRAND infeasible.
+<img width="750" alt="image" src="https://github.com/user-attachments/assets/5f9dfb21-2663-40b6-b501-e271e8b7218d" /></strong></div>
 
-![image](https://github.com/user-attachments/assets/6c5fa416-28d1-41b4-ba0a-476c576a1299)
+<div align="center"><strong>Figure Re.3: Excerpt from the [9] PDE-GCN. Its supplementary material, where **no valid links or code archives** could be found. As shown in the figure, despite mentioning code availability, no actual code repository was provided publicly.
 
-Figure Re.3: Excerpt from the [9] PDE-GCN. Its supplementary material, where **no valid links or code archives** could be found. As shown in the figure, despite mentioning code availability, no actual code repository was provided publicly.
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/6c5fa416-28d1-41b4-ba0a-476c576a1299" /></strong></div>
 
-![image](https://github.com/user-attachments/assets/5ed0c454-ddc8-4d42-8847-60123eb9d068)
+<div align="center"><strong>Figure Re.4: Statement of the fairness setting (following industry standards) for the experiments that we have conducted in Appendix B.
 
-Figure Re.4: Statement of the fairness setting (following industry standards) for the experiments that we have conducted in Appendix B.
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/5ed0c454-ddc8-4d42-8847-60123eb9d068" /></strong></div>
 
-#### Q6: There are claims in the abstract which are not true, like 'was proposed to address this issue, which expands the depth of message passing by leveraging generalized graph diffusion to capture global structural relationships' and 'However, existing models based on GDC lack effective control over the strength and direction of the diffusion process, leading to overdiffusion and unnecessary feature homogenization of nodes.'.
+# Q6: 
+
+There are claims in the abstract which are not true, like 'was proposed to address this issue, which expands the depth of message passing by leveraging generalized graph diffusion to capture global structural relationships' and 'However, existing models based on GDC lack effective control over the strength and direction of the diffusion process, leading to overdiffusion and unnecessary feature homogenization of nodes.'.
 
 ```markdown
 - The figures do not print well on adobe acrobat.
@@ -126,7 +138,9 @@ Figure Re.4: Statement of the fairness setting (following industry standards) fo
 - The authors use wrong terminology. The graph are homophilic/heterohopilic, not homogenous/heterogenous
 ```
 
-#### A6:We thank the reviewer for this detailed and multifaceted feedback. We address the concerns point-by-point below:
+# A6:
+
+We thank the reviewer for this detailed and multifaceted feedback. We address the concerns point-by-point below:
 
 1. **Clarification of Abstract Claims**  
    We respectfully clarify that our statement in the abstract—"GDC... expands the depth of message passing by leveraging generalized graph diffusion to capture global structural relationships"—is based on the original formulation of GDC [Gasteiger et al., 2019], which introduces a diffusion matrix using personalized PageRank to extend node-level interactions beyond one-hop neighborhoods. This approach has been widely interpreted as a global diffusion mechanism in follow-up literature.  
@@ -148,13 +162,17 @@ Figure Re.4: Statement of the fairness setting (following industry standards) fo
 5. **Terminology: Homophilic vs. Heterophilic (not Homogeneous/Heterogeneous)**  
    We appreciate the correction. While the term "homogeneous graph" is used to refer to graphs without typed nodes or edges, we agree that **"homophilic" and "heterophilic"** more accurately reflect the **semantic relationship between node features and connections**. We will revise the terminology throughout the paper to reflect this distinction.
 
-![image](https://github.com/user-attachments/assets/1b528e56-a1b1-4bd6-a78d-851716e92a27)
+<div align="center"><strong>Figure Re.5: Additional analysis on complexity
 
-Figure Re.5: Additional analysis on complexity
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/1b528e56-a1b1-4bd6-a78d-851716e92a27" /></strong></div>
 
-#### Q7: What is the main benefit of the method? Can you show how it solves inherent problems with GNNs such as oversquashing or oversmoothing? How do you distinguish it from existing methods ?
+# Q7: 
 
-#### A7: We appreciate your question regarding the core benefits of our method and how it addresses fundamental issues in GNNs.
+What is the main benefit of the method? Can you show how it solves inherent problems with GNNs such as oversquashing or oversmoothing? How do you distinguish it from existing methods ?
+
+# A7: 
+
+We appreciate your question regarding the core benefits of our method and how it addresses fundamental issues in GNNs.
 
 1. **Oversmoothing Mitigation**
    Our method explicitly constrains the graph diffusion process by **limiting the number of diffusion steps** via a structure-aware criterion (Eq. (6)–(9)), which prevents feature homogenization across distant nodes. This design mitigates oversmoothing without requiring deep models or architectural changes. As shown in Table 6, we reduce diffusion steps by an average of 59.77%, while still improving classification accuracy on heterophilic benchmarks. We further verify this in ablation studies (Table 5) and low-degree node performance (Appendix Table 10).
