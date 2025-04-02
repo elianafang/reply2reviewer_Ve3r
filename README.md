@@ -1,10 +1,12 @@
+😊We are grateful for your valuable comments and take this opportunity to address your concerns with careful consideration.
+
 # Q1: 
 
 The paper does not live up to its claims. Despite modest claims of addressing oversmoothing (which can be addressed by many approaches nowadays), the authors do not show results with different number of layers (very deep models).
 
 # A1: 
 
-Thank you for your valuable feedback.
+😊We sincerely appreciate your thoughtful review comments and the opportunity to clarify and strengthen our work.
 
 We would like to clarify a potential misunderstanding. Our method does not address oversmoothing by increasing the number of GNN layers. Instead, CGDConv mitigates oversmoothing from the perspective of diffusion control, by adaptively limiting the number of message-passing steps through a theoretically grounded convergence criterion $K_0$ and constraint factor $\beta = 2K_0$ (Section 3.1, Eq. 7–9). This design avoids excessive feature propagation and homogenization — the essence of oversmoothing — without requiring deep model architectures.
 
@@ -26,7 +28,7 @@ The evaluation that was done in the paper is ok, but it is not sufficient. This 
 
 # A2:
 
-Thank you for your valuable suggestions regarding evaluation breadth and dataset diversity.
+😊Thank you for your valuable suggestions regarding evaluation breadth and dataset diversity.
 
 We fully agree that evaluating on larger and more challenging datasets like OGB is important. In response, we attempted to run CGDConv on OGB-arxiv, and encountered a critical scalability bottleneck due to the size of the diffusion matrix. Specifically, computing the PPR-based diffusion matrix involves inverting a $169{,}343 \times 169{,}343$ adjacency matrix, which requires approximately 118GB of memory. This leads to a silent failure on standard hardware: the process terminates without error output, as shown in the attached runtime log (👉**see Figure Re.1**).
 
@@ -49,7 +51,7 @@ The paper is very much related to previous works, however it lacks citations and
 
 # A3:
 
-We thank the reviewer for raising this important point.
+😊Thank you for your constructive comments. We are pleased to provide clarifications and improvements based on your reviews.
 
 We would like to clarify that we have dedicated Section 2 (Preliminary) to providing theoretical background and introducing the foundations of graph diffusion. In particular, Section 2.2 explicitly discusses standard graph diffusion processes, including the formulation of the diffusion matrix based on Personalized PageRank (Eq. 2), along with appropriate citations [e.g., Gasteiger et al., 2019].
 
@@ -67,7 +69,7 @@ The experiments provided are OK, but not sufficient to actually show why the pro
 
 # A4:
 
-Thank you again for your feedback.
+😊We sincerely appreciate your thoughtful review comments and the opportunity to clarify and strengthen our work.
 
 We understand your concern that the current experimental setup may not fully showcase the superiority of our proposed method. We would like to respectfully clarify that our experimental section includes:
 
@@ -80,8 +82,6 @@ We understand your concern that the current experimental setup may not fully sho
 These results consistently show that CGDConv achieves superior or competitive performance in a variety of settings. Importantly, our method is model-agnostic and plug-and-play, making it broadly applicable as a graph augmentation technique.
 
 We believe that the combination of effectiveness, interpretability, and generality is what sets CGDConv apart. Nonetheless, we appreciate your suggestion and are actively working to extend our evaluation to other tasks (e.g., link prediction) and larger datasets, as noted in our responses above.
-
-
 
 # Q5: 
 
@@ -103,7 +103,7 @@ Missing references on the background of diffusion (differential equation) based 
 
 # A5:
 
-We thank the reviewer for pointing out these additional related works and agree that some of them are highly relevant to our problem setting. We address them below:
+😊We are grateful for pointing out these additional related works and agree that some of them are highly relevant to our problem setting. We address them below:
 
 - For references [4], [5], and [6], we acknowledge that these works also explore directional message passing, often in the context of graph neuro ODEs or with advection-like mechanisms. While our approach is not grounded in differential equations, we share the common motivation of directing feature flow to mitigate oversmoothing and over-diffusion. We will incorporate discussion of these works into the revised version, emphasizing the distinction that our method remains discrete, plug-and-play, and lightweight (i.e., not requiring ODE solvers or continuous-time dynamics).
 
@@ -138,7 +138,9 @@ There are claims in the abstract which are not true, like 'was proposed to addre
 
 # A6:
 
-We thank the reviewer for this detailed and multifaceted feedback. We address the concerns point-by-point below:
+😊We are grateful for this detailed and multifaceted feedback and take this opportunity to address your concerns with careful consideration.
+
+We address the concerns point-by-point below:
 
 1. Clarification of Abstract Claims  
    We respectfully clarify that our statement in the abstract—"GDC... expands the depth of message passing by leveraging generalized graph diffusion to capture global structural relationships"—is based on the original formulation of GDC [Gasteiger et al., 2019], which introduces a diffusion matrix using personalized PageRank to extend node-level interactions beyond one-hop neighborhoods. This approach has been widely interpreted as a global diffusion mechanism in follow-up literature.  
@@ -170,7 +172,7 @@ What is the main benefit of the method? Can you show how it solves inherent prob
 
 # A7: 
 
-We appreciate your question regarding the core benefits of our method and how it addresses fundamental issues in GNNs.
+😊We appreciate your reviews regarding the core benefits of our method and how it addresses fundamental issues in GNNs.
 
 1. Oversmoothing Mitigation
    Our method explicitly constrains the graph diffusion process by limiting the number of diffusion steps via a structure-aware criterion (Eq. (6)–(9)), which prevents feature homogenization across distant nodes. This design mitigates oversmoothing without requiring deep models or architectural changes. As shown in Table 6, we reduce diffusion steps by an average of 59.77%, while still improving classification accuracy on heterophilic benchmarks. We further verify this in ablation studies (Table 5) and low-degree node performance (Appendix Table 10).
