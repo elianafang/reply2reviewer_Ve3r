@@ -1,4 +1,4 @@
-😊We are grateful for your valuable comments and take this opportunity to address your concerns with careful consideration.
+### 😊We are grateful for your valuable comments and take this opportunity to address your concerns with careful consideration.
 
 # Q1: 
 
@@ -41,7 +41,9 @@ We also appreciate the suggestion to explore additional tasks beyond node classi
 
 Lastly, we would like to clarify that this work was conducted in 2024, and we have already included baselines up to 2023, such as GloGNN and SNGNN. As of our submission, few relevant diffusion-based methods had been published in 2024. We sincerely appreciate the suggestion and are willing to incorporate additional recent 2024 baselines in the final version to further strengthen our comparisons.
 
-<div align="center"><strong>Figure Re.1: Silent crash when running the OGB dataset. When the Python process exceeds the memory limit, the operating system will directly terminate the process without throwing a Python exception. The "adj matrix over" you see is the last successfully executed step, after which the process is killed by the system.
+<div align="center"><strong>Figure Re.1: Silent crash when running the OGB dataset.
+   
+When the Python process exceeds the memory limit, the operating system will directly terminate the process without throwing a Python exception. The "adj matrix over" you see is the last successfully executed step, after which the process is killed by the system.
 
 <img width="650" alt="image" src="https://github.com/user-attachments/assets/dc034a0d-b8c9-48e7-96f1-28435491597a" /></strong></div>
 
@@ -61,7 +63,9 @@ We understand that this link may not be sufficiently explicit for readers unfami
 
 > *"Based on the standard PPR-based diffusion formulation in Eq. (2) [Gasteiger et al., 2019], we introduce a constrained variant to avoid excessive message propagation and computational redundancy."*
 
-We will also reinforce citations in later sections and ensure that the unique contributions of our model are clearly distinguished from the established foundations.
+<div align="center"><strong><img width="503" alt="image" src="https://github.com/user-attachments/assets/042b1134-46d9-463f-b37e-8ad87786f201" /></strong></div>
+
+😊We have reinforced the citations in the later sections and ensured that the unique contributions of our model are clearly distinguished from the established foundations. Thank you again for your valuable reviews.
 
 # Q4: 
 
@@ -113,7 +117,7 @@ Missing references on the background of diffusion (differential equation) based 
 
 We appreciate the reviewer’s comprehensive feedback and will ensure that all these works are acknowledged and appropriately positioned in the revised version. Our goal is not to replace but rather to complement existing approaches with a general-purpose, architecture-agnostic diffusion enhancement.
 
-<div align="center"><strong>Figure Re.2: Screenshot from the official GitHub link provided in the [8] GRAND. This showing a *404 error*, indicating that the codebase is not publicly accessible at the time of our submission. This makes direct, reproducible comparison with GRAND infeasible.
+<div align="center"><strong>Figure Re.2: Screenshot from the official GitHub link provided in the [8] GRAND. This showing a 404 error, indicating that the codebase is not publicly accessible at the time of our submission. This makes direct, reproducible comparison with GRAND infeasible.
 
 <img width="750" alt="image" src="https://github.com/user-attachments/assets/5f9dfb21-2663-40b6-b501-e271e8b7218d" /></strong></div>
 
@@ -129,12 +133,10 @@ We appreciate the reviewer’s comprehensive feedback and will ensure that all t
 
 There are claims in the abstract which are not true, like 'was proposed to address this issue, which expands the depth of message passing by leveraging generalized graph diffusion to capture global structural relationships' and 'However, existing models based on GDC lack effective control over the strength and direction of the diffusion process, leading to overdiffusion and unnecessary feature homogenization of nodes.'.
 
-```markdown
 - The figures do not print well on adobe acrobat.
 - There are claims throughout the paper not backed up by proofs / references.
 - There is no discussion of the complexity of the method or report of the runtimes of the method.
 - The authors use wrong terminology. The graph are homophilic/heterohopilic, not homogenous/heterogenous
-```
 
 # A6:
 
@@ -143,24 +145,27 @@ There are claims in the abstract which are not true, like 'was proposed to addre
 We address the concerns point-by-point below:
 
 1. Clarification of Abstract Claims  
-   We respectfully clarify that our statement in the abstract—"GDC... expands the depth of message passing by leveraging generalized graph diffusion to capture global structural relationships"—is based on the original formulation of GDC [Gasteiger et al., 2019], which introduces a diffusion matrix using personalized PageRank to extend node-level interactions beyond one-hop neighborhoods. This approach has been widely interpreted as a global diffusion mechanism in follow-up literature.  
-   Similarly, our statement that "existing models based on GDC lack effective control..." is based on empirical observations of GDC's fixed diffusion depth and undirected diffusion nature (i.e., symmetric propagation), which can indeed lead to oversmoothing, especially in heterophilic graphs. We have made these assumptions explicit in Sec. 3.1 and supported them through controlled experiments and ablation studies (e.g., Table 4).
+We respectfully clarify that our statement in the abstract—"GDC... expands the depth of message passing by leveraging generalized graph diffusion to capture global structural relationships"—is based on the original formulation of GDC [Gasteiger et al., 2019], which introduces a diffusion matrix using personalized PageRank to extend node-level interactions beyond one-hop neighborhoods. This approach has been widely interpreted as a global diffusion mechanism in follow-up literature.  
+Similarly, our statement that "existing models based on GDC lack effective control..." is based on empirical observations of GDC's fixed diffusion depth and undirected diffusion nature (i.e., symmetric propagation), which can indeed lead to oversmoothing, especially in heterophilic graphs. We have made these assumptions explicit in Sec. 3.1 and supported them through controlled experiments and ablation studies (e.g., Table 4).
 
 2. Figures Not Printing Well in Adobe Acrobat  
-   All figures were exported as PDF vector graphics to ensure scalability and clarity at high resolution. We are uncertain why Acrobat displayed them poorly, and it may be due to rendering glitches on specific systems. Nevertheless, we will optimize figure layout (e.g., splitting large multi-plot figures into subfigures) in the camera-ready version to ensure readability and better print rendering.
+All figures were exported as PDF vector graphics to ensure scalability and clarity at high resolution. We are uncertain why Acrobat displayed them poorly, and it may be due to rendering glitches on specific systems. Nevertheless, we will optimize figure layout (e.g., splitting large multi-plot figures into subfigures) in the camera-ready version to ensure readability and better print rendering.
 
 3. Claims Not Backed by Proofs or References  
-   We believe most technical claims are backed by references in Section 2 (Preliminary) or by derivations in Section 3 (Method). For example:
-   - Eq. (2)–(5) follow standard formulations from GDC/PPR.
-   - The “Information Reduction Assumption” is introduced in Appendix A with theoretical motivation and experimental support (Table 6).
-   - Runtime and over-diffusion control are analyzed in Section 4.3 with experiments across multiple values of the constraint factor β.  
-     We appreciate the suggestion and will carefully re-review the manuscript to ensure every non-obvious claim is either proved or explicitly cited.
+We believe most technical claims are backed by references in Section 2 (Preliminary) or by derivations in Section 3 (Method). For example:
+
+- Eq. (2)–(5) follow standard formulations from GDC/PPR.
+- The “Information Reduction Assumption” is introduced in Appendix A with theoretical motivation and experimental support (Table 6).
+- Runtime and over-diffusion control are analyzed in Section 4.3 with experiments across multiple values of the constraint factor β.  
+
+We appreciate the suggestion and will carefully re-review the manuscript to ensure every non-obvious claim is either proved or explicitly cited.
 
 4. No Runtime or Complexity Analysis  
    Thank you for pointing this out. In our revision, we will include both theoretical complexity analysis of our method (👉**See Figure Re.5**).
 
 5. Terminology: Homophilic vs. Heterophilic (not Homogeneous/Heterogeneous)  
-   We appreciate the correction. While the term "homogeneous/heterogeneous graph" is used to refer to graphs without typed nodes or edges, we agree that "homophilic" and "heterophilic" more accurately reflect the semantic relationship between node features and connections. We will revise the terminology throughout the paper to reflect this distinction.
+
+We appreciate the correction. While the term "homogeneous/heterogeneous graph" is used to refer to graphs without typed nodes or edges, we agree that "homophilic" and "heterophilic" more accurately reflect the semantic relationship between node features and connections. We will revise the terminology throughout the paper to reflect this distinction.
 
 <div align="center"><strong>Figure Re.5: Additional analysis on complexity
 
@@ -175,13 +180,16 @@ What is the main benefit of the method? Can you show how it solves inherent prob
 😊We appreciate your reviews regarding the core benefits of our method and how it addresses fundamental issues in GNNs.
 
 1. Oversmoothing Mitigation
-   Our method explicitly constrains the graph diffusion process by limiting the number of diffusion steps via a structure-aware criterion (Eq. (6)–(9)), which prevents feature homogenization across distant nodes. This design mitigates oversmoothing without requiring deep models or architectural changes. As shown in Table 6, we reduce diffusion steps by an average of 59.77%, while still improving classification accuracy on heterophilic benchmarks. We further verify this in ablation studies (Table 5) and low-degree node performance (Appendix Table 10).
+Our method explicitly constrains the graph diffusion process by limiting the number of diffusion steps via a structure-aware criterion (Eq. (6)–(9)), which prevents feature homogenization across distant nodes. This design mitigates oversmoothing without requiring deep models or architectural changes. As shown in Table 6, we reduce diffusion steps by an average of 59.77%, while still improving classification accuracy on heterophilic benchmarks. We further verify this in ablation studies (Table 5) and low-degree node performance (Appendix Table 10).
 
 2. Oversquashing Alleviation
-   Oversquashing arises when too much information is compressed into fixed-size node representations through narrow message-passing paths. Our Feature Information Flow Routing (FIFR) introduces a non-structural guidance mechanism that redirects information along semantically similar node pairs, creating alternative (non-local) paths that improve representation diversity. This effectively alleviates squashing along sparse or weakly connected structures, as demonstrated by performance gains on low-degree nodes and heterophilic graphs (Table 7, Appendix A).
+Oversquashing arises when too much information is compressed into fixed-size node representations through narrow message-passing paths. Our Feature Information Flow Routing (FIFR) introduces a non-structural guidance mechanism that redirects information along semantically similar node pairs, creating alternative (non-local) paths that improve representation diversity. This effectively alleviates squashing along sparse or weakly connected structures, as demonstrated by performance gains on low-degree nodes and heterophilic graphs (Table 7, Appendix A).
 
 3. Distinction from Existing Methods
-   Unlike prior approaches that increase model depth (e.g., residual GNNs) or inject attention (e.g., GAT), CGDConv works as a lightweight preprocessing module that is model-agnostic and can be seamlessly plugged into any GCN. Compared to GDC and ADC, CGDConv is distinguished by:
-   - Dynamic, graph-specific diffusion step estimation (not fixed depth),
-   - Integration of non-topological feature routing for directional control,
-   - Compatibility with both homophilic and heterophilic graphs (Fig. 4 and Table 3).
+Unlike prior approaches that increase model depth (e.g., residual GNNs) or inject attention (e.g., GAT), CGDConv works as a lightweight preprocessing module that is model-agnostic and can be seamlessly plugged into any GCN. Compared to GDC and ADC, CGDConv is distinguished by:
+- Dynamic, graph-specific diffusion step estimation (not fixed depth),
+- Integration of non-topological feature routing for directional control,
+- Compatibility with both homophilic and heterophilic graphs (Fig. 4 and Table 3).
+
+### 😊We truly appreciate your constructive feedback and hope that our detailed responses and updates will help you reevaluate our work.
+
