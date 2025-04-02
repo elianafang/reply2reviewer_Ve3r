@@ -117,7 +117,7 @@ Missing references on the background of diffusion (differential equation) based 
 
 - Regarding [7] Graph Neural ODEs, we acknowledge this important background and will add appropriate citation and discussion in Section 2 (Preliminary), clarifying that our approach focuses on discrete-step constrained diffusion rather than continuous-time ODE modeling.
 
-We appreciate the reviewer’s comprehensive feedback and will ensure that all these works are acknowledged and appropriately positioned in the revised version. Our goal is not to replace but rather to complement existing approaches with a general-purpose, architecture-agnostic diffusion enhancement.
+We appreciate the reviewer’s comprehensive reviews and will ensure that all these works are acknowledged and appropriately positioned in the revised version. Our goal is not to replace but rather to complement existing approaches with a general-purpose, architecture-agnostic diffusion enhancement.
 
 <div align="center"><strong>Figure Re.2: Screenshot from the official GitHub link provided in the [8] GRAND. This showing a 404 error, indicating that the codebase is not publicly accessible at the time of our submission. This makes direct, reproducible comparison with GRAND infeasible.
 
@@ -142,7 +142,7 @@ There are claims in the abstract which are not true, like 'was proposed to addre
 
 # A6:
 
-😊We are grateful for this detailed and multifaceted feedback and take this opportunity to address your concerns with careful consideration.
+😊We are grateful for this detailed and multifaceted reviews and take this opportunity to address your concerns with careful consideration.
 
 We address the concerns point-by-point below:
 
@@ -193,5 +193,5 @@ Unlike prior approaches that increase model depth (e.g., residual GNNs) or injec
 - Integration of non-topological feature routing for directional control,
 - Compatibility with both homophilic and heterophilic graphs (Fig. 4 and Table 3).
 
-### 😊We truly appreciate your constructive feedback and hope that our detailed responses and updates will help you reevaluate our work.
+### 😊We truly appreciate your constructive reviews and hope that our detailed responses and updates will help you reevaluate our work.
 
