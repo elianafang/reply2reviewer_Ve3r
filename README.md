@@ -1,4 +1,6 @@
 ### 😊We are grateful for your valuable comments and take this opportunity to address your concerns with careful consideration.
+(🕙Some Figures take time to load)
+
 
 # Q1: 
 
